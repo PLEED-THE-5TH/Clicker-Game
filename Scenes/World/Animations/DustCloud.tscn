@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://dya5etx5vr4oe"]
+
+[ext_resource type="Texture2D" uid="uid://bnr8t7k7uyfq6" path="res://Aseprite/DustCloudAnim-Sheet.png" id="1_lo8k5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4v5k"]
+atlas = ExtResource("1_lo8k5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n220p"]
+atlas = ExtResource("1_lo8k5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85yxm"]
+atlas = ExtResource("1_lo8k5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40ix4"]
+atlas = ExtResource("1_lo8k5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kob3o"]
+atlas = ExtResource("1_lo8k5")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfu43"]
+atlas = ExtResource("1_lo8k5")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0amq"]
+atlas = ExtResource("1_lo8k5")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbo4e"]
+atlas = ExtResource("1_lo8k5")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lcg7g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4v5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n220p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85yxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40ix4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kob3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfu43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0amq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbo4e")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="DustCloudV2" type="AnimatedSprite2D"]
+z_index = 3
+sprite_frames = SubResource("SpriteFrames_lcg7g")

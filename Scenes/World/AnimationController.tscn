@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://cm1j8nvowywlo"]
+
+[ext_resource type="Script" path="res://Scripts/World/AnimationController.cs" id="1_pj8os"]
+[ext_resource type="Texture2D" uid="uid://bnr8t7k7uyfq6" path="res://Aseprite/DustCloudAnim-Sheet.png" id="1_r1t5t"]
+[ext_resource type="Texture2D" uid="uid://c7ub52omr4k34" path="res://Aseprite/PickaxeAnim-Sheet.png" id="3_gvyjp"]
+
+[sub_resource type="Animation" id="Animation_cxnhn"]
+resource_name = "DustCloud"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(7, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_x3wab"]
+resource_name = "Pickaxe Spin"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e6hdc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qx24a"]
+_data = {
+"DustCloud": SubResource("Animation_cxnhn"),
+"Pickaxe Spin": SubResource("Animation_x3wab"),
+"RESET": SubResource("Animation_e6hdc")
+}
+
+[node name="Animation Controller" type="Node"]
+script = ExtResource("1_pj8os")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qx24a")
+}
+
+[node name="Sprite" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource("1_r1t5t")
+hframes = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_gvyjp")
+hframes = 7
