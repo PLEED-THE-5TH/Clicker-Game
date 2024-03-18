@@ -25,20 +25,8 @@ layout_mode = 0
 offset_right = 185.0
 offset_bottom = 50.0
 
-[node name="Depth Level" type="Label" parent="Control/Panel/VBoxContainer"]
+[node name="Player Data" type="Label" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
 
-[node name="Player Health" type="Label" parent="Control/Panel/VBoxContainer"]
-layout_mode = 2
-
-[node name="Click Count" type="Label" parent="Control/Panel/VBoxContainer"]
-layout_mode = 2
-
-[node name="Mouse Position" type="Label" parent="Control/Panel/VBoxContainer"]
-layout_mode = 2
-
-[node name="Local Mouse Position" type="Label" parent="Control/Panel/VBoxContainer"]
-layout_mode = 2
-
-[node name="Tile Clicked" type="Label" parent="Control/Panel/VBoxContainer"]
+[node name="Tile Data" type="Label" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2

@@ -17,9 +17,6 @@ public partial class MouseController : Control
         if (@event is InputEventMouseButton eventMouseButton) {
             if (@event.IsPressed()) {
                 ProfileBase.localMousePos = thisWorld.GetLocalMousePosition();
-                //if (World.gameScene == "Mines") {
-                //    OnClick(ProfileBase.localMousePos);
-                //}
                 OnClick(ProfileBase.localMousePos);
             }
         }

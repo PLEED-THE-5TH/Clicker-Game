@@ -13,7 +13,6 @@ public partial class Map : Node2D
     public static List<string> oreList = new() { "Ore_Stone", "Ore_Coal", "Ore_Iron", "Ore_Gold", "Ore_Lapis", "Ore_Emerald", "Ore_Diamond", "Ore_Avorion", "Sp_Bomb" };
     public override void _Ready()
     {
-        World.gameScene = "Mines";
         timer = GetNode<Timer>("Timer");
         timer.Timeout += OnTimerExecute;
         // Dirt Damage States

@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dx2u8v5q74b3u"]
+[gd_scene load_steps=2 format=3 uid="uid://3x7gjfoph4u4"]
 
-[ext_resource type="Script" path="res://Scripts/World/MainMenu.cs" id="1_teeka"]
+[ext_resource type="Script" path="res://Scripts/World/PauseMenu.cs" id="1_wgna8"]
 
-[node name="Main Menu" type="CanvasLayer"]
-script = ExtResource("1_teeka")
+[node name="Pause Menu" type="CanvasLayer"]
+script = ExtResource("1_wgna8")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
@@ -48,9 +48,9 @@ layout_mode = 2
 text = "Continue
 "
 
-[node name="New Game" type="Button" parent="CenterContainer/Control/Panel/VBoxContainer"]
+[node name="Main Menu" type="Button" parent="CenterContainer/Control/Panel/VBoxContainer"]
 layout_mode = 2
-text = "New Game
+text = "Main Menu
 "
 
 [node name="Settings" type="Button" parent="CenterContainer/Control/Panel/VBoxContainer"]

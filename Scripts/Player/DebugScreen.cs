@@ -1,34 +1,27 @@
 using ClickerGame;
 using Godot;
 
-public partial class DebugScreen : Node2D
+public partial class DebugScreen : CanvasLayer
 {
-	Label depthLevel;
-    Label playerHealth;
-    Label clickCount;
-    Label mousePos;
-	Label localMousePos;
-	Label tileClicked;
+    Label playerData;
+    Label tileData;
     public override void _Ready()
-	{
-        playerHealth = GetNode<Label>("Control/Panel/VBoxContainer/Player Health");
-        depthLevel = GetNode<Label>("Control/Panel/VBoxContainer/Depth Level");
-        mousePos = GetNode<Label>("Control/Panel/VBoxContainer/Mouse Position");
-		clickCount = GetNode<Label>("Control/Panel/VBoxContainer/Click Count");
-		localMousePos = GetNode<Label>("Control/Panel/VBoxContainer/Local Mouse Position");
-        tileClicked = GetNode<Label>("Control/Panel/VBoxContainer/Tile Clicked");
+    {
+        playerData = GetNode<Label>("Control/Panel/VBoxContainer/Player Data");
+        tileData = GetNode<Label>("Control/Panel/VBoxContainer/Tile Data");
     }
-	public override void _Process(double delta)
-	{
-        depthLevel.Text = $"Depth Level: {ProfileBase.depthLevel}";
-        playerHealth.Text = $"Player Health: {ProfileBase.playerHealth}";
-        clickCount.Text = $"Click Count: {ProfileBase.clickCount}";
-        mousePos.Text = $"Mouse Position: {ProfileBase.mousePos}";
-        clickCount.Text = $"Click Count: {ProfileBase.clickCount}";
-		localMousePos.Text = $"Local Mouse Pos: {ProfileBase.localMousePos}";
+    public override void _Process(double delta)
+    {
+        playerData.Text = $"Player Data:\n    " +
+            $"Depth Level: {ProfileBase.depthLevel}\n    " +
+            $"Player Health: {ProfileBase.playerHealth}\n    " +
+            $"Click Count: {ProfileBase.clickCount}\n    " +
+            $"Mouse Pos: {ProfileBase.mousePos}\n    " +
+            $"Mouse Pos Local: {ProfileBase.localMousePos}";
         if (ProfileBase.tileClicked != null) {
-            tileClicked.Text = $"Tile Clicked:\n    " +
+            tileData.Text = $"Tile Clicked:\n    " +
                 $"Tile Location: {ProfileBase.tileClicked.cellLocation}\n    " +
+                $"Atlas Position: {ProfileBase.tileClicked.atlasPosition}\n    " +
                 $"Dirt Damage: {ProfileBase.tileClicked.dirtDamage}\n    " +
                 $"Ore Damage: {ProfileBase.tileClicked.oreDamage}\n    " +
                 $"oreType: {Map.oreList[ProfileBase.tileClicked.oreType]}\n    " +

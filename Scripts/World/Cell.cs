@@ -16,6 +16,7 @@ namespace ClickerGame
         public bool shoveled;
         public bool fullyMined;
         public Godot.Vector2I cellLocation;
+        public Vector2I atlasPosition;
         public void OnClicked()
         {
             if (oreType != 0) {
@@ -135,11 +136,25 @@ namespace ClickerGame
             int bottomLeft = IsNeighborNotShoveled(new Vector2I(cellLocation.X - 1, cellLocation.Y + 1));
             int bottom = IsNeighborNotShoveled(new Vector2I(cellLocation.X, cellLocation.Y + 1));
             int bottomRight = IsNeighborNotShoveled(new Vector2I(cellLocation.X + 1, cellLocation.Y + 1));
-            int orthogonal = ((top << 3) | (left << 2) | (right << 1) | bottom) + 7;
-            int diagonal = (~(top | left) & topLeft) + (~(top | right) & topRight) + (~(bottom | left) & bottomLeft) + (~(bottom | right) & bottomRight);
-            GD.Print(cellLocation);
-            GD.Print(diagonal, ", " , orthogonal);
-            Map.tileMap.SetCell(2, cellLocation, 0, new Vector2I(diagonal, orthogonal));
+            //int orthogonal = ((top << 3) | (left << 2) | (right << 1) | bottom) + 7;
+            int atlasY = ((top << 3) | (left << 2) | (right << 1) | bottom) + 7;
+            //
+            // 1 0 0
+            // 0 0 0
+            // 1 1 1
+            //
+            // Y = 1 + the 7
+            // X = 1
+            // 
+            //               (              1        )   (               0         )   (                 0           )   (                  0            )
+            //               (      1            1   )   (      1             0    )   (         0             1     )   (         0               1     )
+            //               (   0      0        1   )   (   0      0         0    )   (     1       0         1     )   (    1        0           1     )
+            //int diagonal = (~(top | left) & topLeft) + (~(top | right) & topRight) + (~(bottom | left) & bottomLeft) + (~(bottom | right) & bottomRight);
+            int atlasX =     (~(top | left) & topLeft) + (~(top | right) & topRight) + (~(bottom | left) & bottomLeft) + (~(bottom | right) & bottomRight);
+            //GD.Print(cellLocation);
+            //GD.Print(diagonal, ", " , orthogonal);
+            Map.tileMap.SetCell(2, cellLocation, 0, new Vector2I(atlasX, atlasY));
+            atlasPosition = new Vector2I(atlasX, atlasY);
         }
         private void UpdateNBors()
         {

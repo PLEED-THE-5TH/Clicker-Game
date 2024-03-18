@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://sdogx5rp5s5k"]
+[gd_scene load_steps=8 format=3 uid="uid://sdogx5rp5s5k"]
 
 [ext_resource type="Script" path="res://Scripts/World/World.cs" id="1_tpfof"]
 [ext_resource type="PackedScene" uid="uid://b8fr381sag2br" path="res://Scenes/World/Map.tscn" id="3_pg4mi"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cm1j8nvowywlo" path="res://Scenes/World/AnimationController.tscn" id="4_0ar2v"]
 [ext_resource type="PackedScene" uid="uid://b0m6ka5u8r2wb" path="res://Scenes/Player/DebugScreen.tscn" id="4_jt5w5"]
 [ext_resource type="Shader" path="res://Shaders/SimpleCRT.gdshader" id="6_hgvqr"]
-[ext_resource type="PackedScene" uid="uid://dx2u8v5q74b3u" path="res://Scenes/World/MainMenu.tscn" id="7_1wbn1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_40grt"]
 shader = ExtResource("6_hgvqr")
@@ -32,6 +31,7 @@ script = ExtResource("3_vb1ia")
 [node name="Debug Screen" parent="." instance=ExtResource("4_jt5w5")]
 
 [node name="Post Effects" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Post Effects"]
 material = SubResource("ShaderMaterial_40grt")
@@ -40,5 +40,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Main Menu" parent="." instance=ExtResource("7_1wbn1")]
