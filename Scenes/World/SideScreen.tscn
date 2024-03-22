@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfmeymijoy2hd"]
+
+[ext_resource type="Script" path="res://Scripts/World/SideScreen.cs" id="1_qeaew"]
+
+[node name="SideScreen" type="CanvasLayer"]
+script = ExtResource("1_qeaew")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 711.0
+offset_top = 79.0
+offset_right = 1094.0
+offset_bottom = 591.0

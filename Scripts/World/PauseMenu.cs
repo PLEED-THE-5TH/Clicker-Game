@@ -28,7 +28,8 @@ public partial class PauseMenu : CanvasLayer
     }
     private void SettingsButtonPressed()
     {
-
+        World.ClosePauseMenu();
+        World.OpenSettingsMenu();
     }
     private void ExitButtonPressed()
     {

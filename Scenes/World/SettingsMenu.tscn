@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0k5toj6tgewg"]
+
+[ext_resource type="Script" path="res://Scripts/World/SettingsMenu.cs" id="1_xw03h"]
+
+[node name="SettingsMenu" type="CanvasLayer"]
+script = ExtResource("1_xw03h")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 66.0
+offset_top = 78.0
+offset_right = 66.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.5
+offset_top = -167.0
+offset_right = 155.5
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Control/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Debug Screen" type="CheckBox" parent="CenterContainer/Control/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Debug Menu"
+
+[node name="CRT Effect" type="CheckBox" parent="CenterContainer/Control/Panel/VBoxContainer"]
+layout_mode = 2
+text = "CRT Effect"
+
+[node name="Exit" type="Button" parent="CenterContainer/Control/Panel"]
+layout_mode = 0
+offset_left = 294.5
+offset_top = 6.0
+offset_right = 312.5
+offset_bottom = 37.0
+scale = Vector2(0.625, 0.36)
+text = "X"
