@@ -35,10 +35,12 @@ public partial class World : Node2D
             CloseDebugScreen();
         }
         if (SettingsMenu.settingCRTEffect) {
-
+            postProcess.SetProcessInput(true);
+            postProcess.SetProcess(true);
         }
         else {
-            CloseDebugScreen();
+            postProcess.SetProcessInput(false);
+            postProcess.SetProcess(false);
         }
     }
     private void OpenDebugScreen()
@@ -75,40 +77,6 @@ public partial class World : Node2D
         settingsMenu.QueueFree();
         settingsMenu = null;
     }
-
-    // help stone tasksksksks
-    //List<List<char>> someList = new();
-    //private List<List<char>> SortByID(List<List<char>> unsortedList, char sortBy)
-    //{
-    //    List<char> connectedGroups = new();
-    //    List<List<char>> returnList = new();
-    //    foreach (List<char> id in unsortedList) {
-    //        if (id == sortBy) {
-    //            returnList.Add(id);
-    //            connectedGroups.Add(id.connectedGroupsList);
-    //        }
-    //    }
-    //    foreach (char groupedIDs in connectedGroups) {
-    //        SortByID(unsortedList, groupedIDs);
-    //    }
-    //    return returnList;
-    //}
-    //private void GetGroupedIDs(List<List<char>> unsortedList, char searchedID)
-    //{
-    //    List<List<char>> groupedList = new();
-    //    SortByID(unsortedList, searchedID);
-    //}
-    /*
-     Sort the list by the ID youre searching and add to MAINLIST
-        as you search, keep track of all connected IDs
-     Sort through the connected IDs and add to MAINLIST
-     
-     If you want to get a the list off all connected
-     Sort by every ID consecutively BUT, ignore anything and everything youve already added as you go
-    */
-
-
-
 
     public static class Program
     {
@@ -185,41 +153,78 @@ public partial class World : Node2D
             new(ID.P, new())
         };
 
-            var containers = GroupObjects(objectsToSort);
+            var containers = Solution(connections, objectsToSort);
         }
-        private static List<List<Entry>> GroupObjects(List<Entry> objectsToSort)
+
+        private static List<List<Entry>> Solution(List<List<ID>> connections, List<Entry> objectsToSort)
         {
-            List<List<Entry>> groupedEntries = new();
-            List<ID> allIDs = GetAllIDs(objectsToSort);
-            for (int i = 0; i < allIDs.Count; i++) {
-                groupedEntries.Add(new());
-            }
-            for (int i = 0; i < objectsToSort.Count; i++) {
-                for (int j = 0; j < allIDs.Count; j++) {
-                    if (objectsToSort[i].ID == allIDs[j]) {
-                        groupedEntries[j].Add(objectsToSort[i]);
+            var numGroups = 0;
+            var lookup = new Dictionary<ID, int>();
+            foreach (var connection in connections) {
+                // some voodoo magic
+                foreach (var id in connection) {
+                    if (!lookup.ContainsKey(id)) {
+                        lookup[id] = numGroups;
+                        numGroups++;
                     }
                 }
             }
-            return groupedEntries;
-        }
-        private static List<List<Entry>> GetConnectedObjects(List<List<ID>> connections, List<List<Entry>> groupedProject)
-        {
-            List<List<Entry>> connectedGroups = new();
-            for (int i = 0; i < groupedProject.Count; i++) {
-                if () {
+            var groupedObjects = new List<List<Entry>>();
+            for (var i = 0; i < numGroups; i++) {
+                groupedObjects.Add(new());
+            }
+            foreach (var Entry in objectsToSort) {
+                groupedObjects[lookup[Entry.ID]].Add(Entry);
+            }
 
-                }
-            }
-            return connectedGroups;
+            return groupedObjects;
         }
-        private static List<ID> GetAllIDs(List<Entry> objectsToSort)
-        {
-            List<ID> ids = new();
-            for (int i = 0; i < objectsToSort.Count; i++) {
-                ids.Add(objectsToSort[i].ID);
-            }
-            return ids;
-        }
+
+
+        //private static List<List<Entry>> GroupObjects(List<Entry> objectsToSort)
+        //{
+        //    List<List<Entry>> groupedEntries = new();
+        //    List<ID> allIDs = GetAllIDs(objectsToSort);
+        //    for (int i = 0; i < allIDs.Count; i++) {
+        //        groupedEntries.Add(new());
+        //    }
+        //    for (int i = 0; i < objectsToSort.Count; i++) {
+        //        for (int j = 0; j < allIDs.Count; j++) {
+        //            if (objectsToSort[i].ID == allIDs[j]) {
+        //                groupedEntries[j].Add(objectsToSort[i]);
+        //            }
+        //        }
+        //    }
+        //    return groupedEntries;
+        //}
+        //private static List<List<Entry>> GetConnectedObjects(List<List<ID>> connections, List<List<Entry>> groupedProject)
+        //{
+        //    List<List<Entry>> connectedGroups = new List<List<Entry>>();
+        //    for (int i = 0; i < connections.Count; i++) {                    // (var connection in connections) or? (int i = 0; i < connections.Count; i++)
+        //        List<Entry> connectedGroup = new List<Entry>();
+        //        for (int j = 0; j < connections[i].Count; j++) {             // (var id in connection)          or? (int j = 0; j < connections[i].Count; j++)
+        //            for (int k = 0; k < groupedProject.Count; k++) {         // (var group in groupedProject)   or? (int k = 0; k < groupedProject.Count; k++)
+        //                for (int l = 0; l < groupedProject[i].Count; l++) {  // (var entry in group)            or? (int l = 0; l < groupedProject[i].Count; l++)
+        //                    if (groupedProject[k][j].ID == connections[i]) { // (entry.ID == id)                or? (groupedProject[k][j].ID == connections[i])
+        //                        connectedGroup.AddRange(groupedProject[k]);  // (group)                         or? (groupedProject[k])
+        //                        break;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        if (connectedGroup.Count > 0) {
+        //            connectedGroups.Add(connectedGroup);
+        //        }
+        //    }
+        //    return connectedGroups;
+        //}
+        //private static List<ID> GetAllIDs(List<Entry> objectsToSort)
+        //{
+        //    List<ID> ids = new();
+        //    for (int i = 0; i < objectsToSort.Count; i++) {
+        //        ids.Add(objectsToSort[i].ID);
+        //    }
+        //    return ids;
+        //}
     }
 }
