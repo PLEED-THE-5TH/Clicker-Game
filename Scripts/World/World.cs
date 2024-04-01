@@ -1,5 +1,6 @@
 using ClickerGame;
 using Godot;
+using Microsoft.VisualBasic;
 using System.Collections.Generic;
 
 public partial class World : Node2D
@@ -13,7 +14,8 @@ public partial class World : Node2D
     {
         world = this;
         postProcess = GetNode<CanvasLayer>("Post Effects");
-        LoadSettings();
+        SettingsController settingsController = new SettingsController();
+        AddChild(settingsController);
     }
     public override void _Input(InputEvent @event)
     {
@@ -25,34 +27,19 @@ public partial class World : Node2D
     }
     public override void _Process(double delta)
     {
+        
     }
-    private void LoadSettings()
+    public static void ToggleDebugScreen()
     {
-        if (SettingsMenu.settingDebugScreen) {
-            OpenDebugScreen();
-        }
-        else if (debugScreen != null) {
-            CloseDebugScreen();
-        }
-        if (SettingsMenu.settingCRTEffect) {
-            postProcess.SetProcessInput(true);
-            postProcess.SetProcess(true);
+        if (SettingsController.settings.DebugScreen) {
+            PackedScene debugScreenScene = GD.Load<PackedScene>("res://Scenes/World/DebugScreen.tscn");
+            debugScreen = debugScreenScene.Instantiate();
+            world.AddChild(debugScreen);
         }
         else {
-            postProcess.SetProcessInput(false);
-            postProcess.SetProcess(false);
+            debugScreen.QueueFree();
+            debugScreen = null;
         }
-    }
-    private void OpenDebugScreen()
-    {
-        PackedScene debugScreenScene = GD.Load<PackedScene>("res://Scenes/World/DebugScreen.tscn");
-        debugScreen = debugScreenScene.Instantiate();
-        world.AddChild(debugScreen);
-    }
-    private void CloseDebugScreen()
-    {
-        debugScreen.QueueFree();
-        debugScreen = null;
     }
     public static void OpenPauseMenu()
     {
@@ -64,7 +51,6 @@ public partial class World : Node2D
     {
         pauseMenu.QueueFree();
         pauseMenu = null;
-        world.LoadSettings();
     }
     public static void OpenSettingsMenu()
     {

@@ -6,8 +6,6 @@ public partial class SettingsMenu : CanvasLayer
     Button exitButton;
     CheckBox debugScreen;
     CheckBox crtEffect;
-    public static bool settingDebugScreen;
-    public static bool settingCRTEffect;
     public override void _Ready()
 	{
         exitButton = GetNode<Button>("CenterContainer/Control/Panel/Exit");
@@ -27,10 +25,12 @@ public partial class SettingsMenu : CanvasLayer
     }
     private void ToggleDebugScreen()
     {
-        settingDebugScreen = !settingDebugScreen;
+        SettingsController.settings.DebugScreen = !SettingsController.settings.DebugScreen;
+        SettingsController.UpdateWorld();
     }
     private void ToggleCRTEffect()
     {
-        settingCRTEffect = !settingCRTEffect;
+        SettingsController.settings.CRTEffect = !SettingsController.settings.CRTEffect;
+        SettingsController.UpdateWorld();
     }
 }
