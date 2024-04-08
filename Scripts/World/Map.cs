@@ -21,7 +21,7 @@ public partial class Map : Node2D
         tileMapDictionary.Add("2_D_Dirt", new Godot.Vector2I(1, 1));
         tileMapDictionary.Add("3_D_Dirt", new Godot.Vector2I(2, 1));
         tileMapDictionary.Add("4_D_Dirt", new Godot.Vector2I(3, 1));
-        tileMapDictionary.Add("UnderGround", new Godot.Vector2I(4, 5));
+        tileMapDictionary.Add("UnderGround", new Godot.Vector2I(4, 2));
         // Dirt Edges
         tileMapDictionary.Add("D_Surrounded", new Godot.Vector2I(4, 3));
         tileMapDictionary.Add("D_TopLeft", new Godot.Vector2I(0, 2));
@@ -41,10 +41,10 @@ public partial class Map : Node2D
         tileMapDictionary.Add("D_T_H_Middle", new Godot.Vector2I(5, 4));
         tileMapDictionary.Add("D_T_H_Right", new Godot.Vector2I(6, 4));
         // Dirt Corners
-        tileMapDictionary.Add("D_C_TopLeft", new Godot.Vector2I(7, 14));
-        tileMapDictionary.Add("D_C_TopRight", new Godot.Vector2I(9, 14));
-        tileMapDictionary.Add("D_C_BottomLeft", new Godot.Vector2I(7, 16));
-        tileMapDictionary.Add("D_C_BottomRight", new Godot.Vector2I(9, 16));
+        tileMapDictionary.Add("D_C_TopLeft", new Godot.Vector2I(6, 3));
+        tileMapDictionary.Add("D_C_TopRight", new Godot.Vector2I(5, 3));
+        tileMapDictionary.Add("D_C_BottomLeft", new Godot.Vector2I(6, 2));
+        tileMapDictionary.Add("D_C_BottomRight", new Godot.Vector2I(5, 2));
         tileMapDictionary.Add("D_C_Right", new Godot.Vector2I(7, 2));
         tileMapDictionary.Add("D_C_Left", new Godot.Vector2I(8, 2));
         tileMapDictionary.Add("D_C_Top", new Godot.Vector2I(9, 3));
@@ -133,145 +133,145 @@ public partial class Map : Node2D
                     else if (!tempCell.fullyMined) {
                         tileMap.SetCell(1, drawingLocation, 0, tileMapDictionary[oreList[(tileMapData[row][col].oreType)]]);
                     }
-                    //if (tempCell.shoveled) {
-                    //    List<Cell> surroundingCells = tempCell.GetSurroundingCells();
-                    //    List<bool> boolList = new();
-                    //    for (int k = 0; k < 9; k++) {
-                    //        boolList.Add(true);
-                    //    }
-                    //    /*
-                    //        0 1 2 3 4 5 6 7 8
-                    //        3 4 5
-                    //        6 7 8
-                    //    */
-                    //    for (int i = 0; i < surroundingCells.Count; i++) {
-                    //        if (surroundingCells[i].cellLocation.X < drawingLocation.X && surroundingCells[i].cellLocation.Y < drawingLocation.Y) {
-                    //            boolList[0] = !surroundingCells[i].shoveled;
-                    //        }
-                    //        if (surroundingCells[i].cellLocation.X == drawingLocation.X && surroundingCells[i].cellLocation.Y < drawingLocation.Y) {
-                    //            boolList[1] = !surroundingCells[i].shoveled;
-                    //        }
-                    //        if (surroundingCells[i].cellLocation.X > drawingLocation.X && surroundingCells[i].cellLocation.Y < drawingLocation.Y) {
-                    //            boolList[2] = !surroundingCells[i].shoveled;
-                    //        }
-                    //        if (surroundingCells[i].cellLocation.X < drawingLocation.X && surroundingCells[i].cellLocation.Y == drawingLocation.Y) {
-                    //            boolList[3] = !surroundingCells[i].shoveled;
-                    //        }
-                    //        if (surroundingCells[i].cellLocation.X == drawingLocation.X && surroundingCells[i].cellLocation.Y == drawingLocation.Y) {
-                    //            boolList[4] = !surroundingCells[i].shoveled;
-                    //        }
-                    //        if (surroundingCells[i].cellLocation.X > drawingLocation.X && surroundingCells[i].cellLocation.Y == drawingLocation.Y) {
-                    //            boolList[5] = !surroundingCells[i].shoveled;
-                    //        }
-                    //        if (surroundingCells[i].cellLocation.X < drawingLocation.X && surroundingCells[i].cellLocation.Y > drawingLocation.Y) {
-                    //            boolList[6] = !surroundingCells[i].shoveled;
-                    //        }
-                    //        if (surroundingCells[i].cellLocation.X == drawingLocation.X && surroundingCells[i].cellLocation.Y > drawingLocation.Y) {
-                    //            boolList[7] = !surroundingCells[i].shoveled;
-                    //        }
-                    //        if (surroundingCells[i].cellLocation.X > drawingLocation.X && surroundingCells[i].cellLocation.Y > drawingLocation.Y) {
-                    //            boolList[8] = !surroundingCells[i].shoveled;
-                    //        }
-                    //    }
-                    //    if (tileMapData[drawingLocation.X][drawingLocation.Y].shoveled) {
-                    //        if (boolList[1] && boolList[3] && !boolList[5] && !boolList[7] && !boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_TopLeft"]);
-                    //        }
-                    //        if (boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && !boolList[6] && !boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_TopMiddle"]);
-                    //        }
-                    //        if (boolList[1] && !boolList[3] && boolList[5] && !boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_TopRight"]);
-                    //        }
-                    //        if (!boolList[1] && boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_MiddleLeft"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_MiddleEmpty"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && boolList[5] && !boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_MiddleRight"]);
-                    //        }
-                    //        if (!boolList[1] && boolList[3] && !boolList[5] && boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_BottomLeft"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_BottomMiddle"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && boolList[5] && boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_BottomRight"]);
-                    //        }
-                    //        if (boolList[1] && boolList[3] && boolList[5] && !boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_T_V_Top"]);
-                    //        }
-                    //        if (!boolList[1] && boolList[3] && boolList[5] && !boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_T_V_Middle"]);
-                    //        }
-                    //        if (!boolList[1] && boolList[3] && boolList[5] && boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_T_V_Bottom"]);
-                    //        }
-                    //        if (boolList[1] && boolList[3] && boolList[5] && boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_Surrounded"]);
-                    //        }
-                    //        if (boolList[1] && boolList[3] && !boolList[5] && boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_T_H_Left"]);
-                    //        }
-                    //        if (boolList[1] && !boolList[3] && !boolList[5] && boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_T_H_Middle"]);
-                    //        }
-                    //        if (boolList[1] && !boolList[3] && boolList[5] && boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_T_H_Right"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_TopLeft"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[6]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_TopRight"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[2]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_BottomLeft"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_BottomRight"]);
-                    //        }
-                    //        /*
-                    //        0 1 2
-                    //        3 4 5
-                    //        6 7 8
-                    //         */
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && !boolList[0] && !boolList[6] && boolList[2] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_Right"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && boolList[6] && !boolList[2] && !boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_Left"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && !boolList[6] && boolList[2] && !boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_Top"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && !boolList[0] && boolList[6] && !boolList[2] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_Bottom"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && boolList[6] && boolList[2] && !boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_1"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && !boolList[6] && boolList[2] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_2"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && boolList[6] && !boolList[2] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_3"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && !boolList[0] && boolList[6] && boolList[2] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_4"]);
-                    //        }
-                    //        if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
-                    //            tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_All"]);
-                    //        }
-                    //    }
-                    //    if (tempCell.shoveled && tempCell.fullyMined) {
-                    //        tileMap.SetCell(1, drawingLocation, -1);
-                    //        tileMap.SetCell(0, drawingLocation, 0, tileMapDictionary["UnderGround"]);
-                    //    }
-                    //}
+                    if (tempCell.shoveled) {
+                        List<Cell> surroundingCells = tempCell.GetSurroundingCells();
+                        List<bool> boolList = new();
+                        for (int k = 0; k < 9; k++) {
+                            boolList.Add(true);
+                        }
+                        /*
+                            0 1 2 3 4 5 6 7 8
+                            3 4 5
+                            6 7 8
+                        */
+                        for (int i = 0; i < surroundingCells.Count; i++) {
+                            if (surroundingCells[i].cellLocation.X < drawingLocation.X && surroundingCells[i].cellLocation.Y < drawingLocation.Y) {
+                                boolList[0] = !surroundingCells[i].shoveled;
+                            }
+                            if (surroundingCells[i].cellLocation.X == drawingLocation.X && surroundingCells[i].cellLocation.Y < drawingLocation.Y) {
+                                boolList[1] = !surroundingCells[i].shoveled;
+                            }
+                            if (surroundingCells[i].cellLocation.X > drawingLocation.X && surroundingCells[i].cellLocation.Y < drawingLocation.Y) {
+                                boolList[2] = !surroundingCells[i].shoveled;
+                            }
+                            if (surroundingCells[i].cellLocation.X < drawingLocation.X && surroundingCells[i].cellLocation.Y == drawingLocation.Y) {
+                                boolList[3] = !surroundingCells[i].shoveled;
+                            }
+                            if (surroundingCells[i].cellLocation.X == drawingLocation.X && surroundingCells[i].cellLocation.Y == drawingLocation.Y) {
+                                boolList[4] = !surroundingCells[i].shoveled;
+                            }
+                            if (surroundingCells[i].cellLocation.X > drawingLocation.X && surroundingCells[i].cellLocation.Y == drawingLocation.Y) {
+                                boolList[5] = !surroundingCells[i].shoveled;
+                            }
+                            if (surroundingCells[i].cellLocation.X < drawingLocation.X && surroundingCells[i].cellLocation.Y > drawingLocation.Y) {
+                                boolList[6] = !surroundingCells[i].shoveled;
+                            }
+                            if (surroundingCells[i].cellLocation.X == drawingLocation.X && surroundingCells[i].cellLocation.Y > drawingLocation.Y) {
+                                boolList[7] = !surroundingCells[i].shoveled;
+                            }
+                            if (surroundingCells[i].cellLocation.X > drawingLocation.X && surroundingCells[i].cellLocation.Y > drawingLocation.Y) {
+                                boolList[8] = !surroundingCells[i].shoveled;
+                            }
+                        }
+                        if (tileMapData[drawingLocation.X][drawingLocation.Y].shoveled) {
+                            if (boolList[1] && boolList[3] && !boolList[5] && !boolList[7] && !boolList[8]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_TopLeft"]);
+                            }
+                            if (boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && !boolList[6] && !boolList[8]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_TopMiddle"]);
+                            }
+                            if (boolList[1] && !boolList[3] && boolList[5] && !boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_TopRight"]);
+                            }
+                            if (!boolList[1] && boolList[3] && !boolList[5] && !boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_MiddleLeft"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_MiddleEmpty"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && boolList[5] && !boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_MiddleRight"]);
+                            }
+                            if (!boolList[1] && boolList[3] && !boolList[5] && boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_BottomLeft"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_BottomMiddle"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && boolList[5] && boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_BottomRight"]);
+                            }
+                            if (boolList[1] && boolList[3] && boolList[5] && !boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_T_V_Top"]);
+                            }
+                            if (!boolList[1] && boolList[3] && boolList[5] && !boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_T_V_Middle"]);
+                            }
+                            if (!boolList[1] && boolList[3] && boolList[5] && boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_T_V_Bottom"]);
+                            }
+                            if (boolList[1] && boolList[3] && boolList[5] && boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_Surrounded"]);
+                            }
+                            if (boolList[1] && boolList[3] && !boolList[5] && boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_T_H_Left"]);
+                            }
+                            if (boolList[1] && !boolList[3] && !boolList[5] && boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_T_H_Middle"]);
+                            }
+                            if (boolList[1] && !boolList[3] && boolList[5] && boolList[7]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_T_H_Right"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[8]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_TopLeft"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[6]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_TopRight"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[2]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_BottomLeft"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_BottomRight"]);
+                            }
+                            /*
+                            0 1 2
+                            3 4 5
+                            6 7 8
+                             */
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && !boolList[0] && !boolList[6] && boolList[2] && boolList[8]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_Right"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && boolList[6] && !boolList[2] && !boolList[8]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_Left"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && !boolList[6] && boolList[2] && !boolList[8]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_Top"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && !boolList[0] && boolList[6] && !boolList[2] && boolList[8]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_Bottom"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && boolList[6] && boolList[2] && !boolList[8]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_1"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && !boolList[6] && boolList[2] && boolList[8]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_2"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && boolList[6] && !boolList[2] && boolList[8]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_3"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && !boolList[0] && boolList[6] && boolList[2] && boolList[8]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_4"]);
+                            }
+                            if (!boolList[1] && !boolList[3] && !boolList[5] && !boolList[7] && boolList[0] && boolList[2] && boolList[6] && boolList[8]) {
+                                tileMap.SetCell(2, drawingLocation, 0, tileMapDictionary["D_C_All"]);
+                            }
+                        }
+                        if (tempCell.shoveled && tempCell.fullyMined) {
+                            tileMap.SetCell(1, drawingLocation, -1);
+                            tileMap.SetCell(0, drawingLocation, 0, tileMapDictionary["UnderGround"]);
+                        }
+                    }
                 }
             }
         }

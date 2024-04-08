@@ -30,7 +30,8 @@ namespace ClickerGame
             if (IsReadyForProgression && fullyMined) { return; }
             Count();
             TileStateCheck();
-            UpdateCell();
+            //UpdateCell();
+            Map.DrawMap();
             mainMap.CheckLevelCompletion();
         }
         private void Bomb()
@@ -49,7 +50,7 @@ namespace ClickerGame
                 oreDamage += ProfileBase.miningSpeed;
             }
             if (oreDamage > 0 && Map.oreList[oreType] == "Sp_Bomb") {
-                Bomb();
+                //Bomb();
             }
         }
         private void TileStateCheck()
@@ -61,7 +62,8 @@ namespace ClickerGame
                     if (Map.oreList[oreType] == "Sp_Bomb") {
                         IsReadyForProgression = true;
                     }
-                    UpdateNBors();
+                    //UpdateNBors();
+                    Map.DrawMap();
                 }
             }
             else {
@@ -69,7 +71,14 @@ namespace ClickerGame
                     fullyMined = true;
                     IsReadyForProgression = true;
                     oreDamage = -1;
+                    GiveOreToPlayer();
                 }
+            }
+        }
+        private void GiveOreToPlayer()
+        {
+            if (oreType != 8) {
+                ProfileBase.oreOwned[oreType - 1]++;
             }
         }
         private string GenerateNextTile()
@@ -111,7 +120,8 @@ namespace ClickerGame
                 surroundingCells[i].oreDamage = -1;
                 Map.tileMapData[surroundingCells[i].cellLocation.X][surroundingCells[i].cellLocation.Y] = surroundingCells[i];
             }
-            UpdateNBors();
+            //UpdateNBors();
+            Map.DrawMap();
         }
         public void UpdateCell()
         {

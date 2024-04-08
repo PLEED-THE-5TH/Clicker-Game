@@ -16,6 +16,7 @@ public partial class World : Node2D
         postProcess = GetNode<CanvasLayer>("Post Effects");
         SettingsController settingsController = new SettingsController();
         AddChild(settingsController);
+        ProfileBase.Init();
     }
     public override void _Input(InputEvent @event)
     {
@@ -31,7 +32,7 @@ public partial class World : Node2D
     }
     public static void ToggleDebugScreen()
     {
-        if (SettingsController.settings.DebugScreen) {
+        if (!SettingsController.settings.DebugScreen) {
             PackedScene debugScreenScene = GD.Load<PackedScene>("res://Scenes/World/DebugScreen.tscn");
             debugScreen = debugScreenScene.Instantiate();
             world.AddChild(debugScreen);
